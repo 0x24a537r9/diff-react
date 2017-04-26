@@ -16,9 +16,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsTestUtils = require('react-addons-test-utils');
+var _shallow = require('react-test-renderer/shallow');
 
-var _reactAddonsTestUtils2 = _interopRequireDefault(_reactAddonsTestUtils);
+var _shallow2 = _interopRequireDefault(_shallow);
 
 var _virtualDom = require('virtual-dom');
 
@@ -149,7 +149,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 // React types.
 
 
-// The output of ReactTestUtils's shallow render of a React tree.
+// The output of ReactShallowRenderer's shallow render of a React tree.
 var PatchTypes = {
   NONE: 0, // Irrelevant.
   VTEXT: 1,
@@ -202,11 +202,11 @@ var MAX_CHARS_TO_INLINE_PROPS = 100;
 function diffReact(base, test) {
   var canonicalizePropsFn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : canonicalizeProps;
 
-  var baseRenderer = _reactAddonsTestUtils2.default.createRenderer();
+  var baseRenderer = new _shallow2.default();
   baseRenderer.render(base);
   var renderedBase = baseRenderer.getRenderOutput();
 
-  var testRenderer = _reactAddonsTestUtils2.default.createRenderer();
+  var testRenderer = new _shallow2.default();
   testRenderer.render(test);
   var renderedTest = testRenderer.getRenderOutput();
 

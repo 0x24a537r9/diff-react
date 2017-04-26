@@ -19,8 +19,7 @@
     "is-empty-object": "^1.1.1",
     "pretty-format": "^19.0.0",
     "react": "^15.5.4",
-    "react-addons-test-utils": "~15.4.1",
-    "react-dom": "^15.5.4",
+    "react-test-renderer": "^15.5.4",
     "virtual-dom": "^2.1.1"
   },
   "devDependencies": {

@@ -94,7 +94,7 @@
  */
 
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactShallowRenderer from 'react-test-renderer/shallow';
 import {diff, VNode, VText} from 'virtual-dom';
 import {diffLines} from 'diff';
 import flatten from 'flatten';
@@ -110,7 +110,7 @@ type Props = {
   children?: Array<React.Element<any> | string | FalseyElement>,
 };
 
-// The output of ReactTestUtils's shallow render of a React tree.
+// The output of ReactShallowRenderer's shallow render of a React tree.
 export type RenderedReactElement =
   | string
   | FalseyElement
@@ -203,11 +203,11 @@ export default function diffReact(
   test: React.Element<any> | FalseyElement,
   canonicalizePropsFn?: CanonicalizePropsFn = canonicalizeProps,
 ): string {
-  const baseRenderer = ReactTestUtils.createRenderer();
+  const baseRenderer = new ReactShallowRenderer();
   baseRenderer.render(base);
   const renderedBase = baseRenderer.getRenderOutput();
 
-  const testRenderer = ReactTestUtils.createRenderer();
+  const testRenderer = new ReactShallowRenderer();
   testRenderer.render(test);
   const renderedTest = testRenderer.getRenderOutput();
 
