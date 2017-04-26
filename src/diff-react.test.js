@@ -4,16 +4,16 @@
  * @flow
  */
 
-import type {
-  CanonicalizePropFn,
-  CanonicalizePropsFn,
-  RenderedReactElement,
-} from './diff-react.js';
-
 import React from 'react';
 import diffReact, {
   formatArrayOrObjectPropDiff,
   indexOfIthNonRemovedItem,
+} from './diff-react.js';
+
+import type {
+  CanonicalizePropFn,
+  CanonicalizePropsFn,
+  RenderedReactElement,
 } from './diff-react.js';
 
 describe('diffReact()', () => {
@@ -40,9 +40,7 @@ describe('diffReact()', () => {
   });
 
   it('recognizes single equivalent components as equal', () => {
-    expect(wrapAndDiffReact(<div />, <div />)).toBe(
-      '(No visual differences)',
-    );
+    expect(wrapAndDiffReact(<div />, <div />)).toBe('(No visual differences)');
   });
 
   it('shows diffs for single components with different types', () => {
@@ -195,10 +193,7 @@ describe('diffReact()', () => {
 
   it('shows diffs for single components with different nested types but equal props', () => {
     expect(
-      wrapAndDiffReact(
-        <div><div a="1" /></div>,
-        <div><img a="1" /></div>,
-      ),
+      wrapAndDiffReact(<div><div a="1" /></div>, <div><img a="1" /></div>),
     ).toMatchSnapshot();
   });
 
@@ -212,13 +207,13 @@ describe('diffReact()', () => {
   });
 
   it('recognizes all falsey values as equal as children', () => {
-    expect(
-      wrapAndDiffReact(<div>{false}</div>, <div>{undefined}</div>),
-    ).toBe('(No visual differences)');
+    expect(wrapAndDiffReact(<div>{false}</div>, <div>{undefined}</div>)).toBe(
+      '(No visual differences)',
+    );
 
-    expect(
-      wrapAndDiffReact(<div>{undefined}</div>, <div>{null}</div>),
-    ).toBe('(No visual differences)');
+    expect(wrapAndDiffReact(<div>{undefined}</div>, <div>{null}</div>)).toBe(
+      '(No visual differences)',
+    );
 
     expect(wrapAndDiffReact(<div>{null}</div>, <div>{false}</div>)).toBe(
       '(No visual differences)',
@@ -245,19 +240,13 @@ describe('diffReact()', () => {
 
   it('shows diffs for swapping in conditionally-rendered children', () => {
     expect(
-      wrapAndDiffReact(
-        <div a="1">{false}</div>,
-        <div a="1"><img /></div>,
-      ),
+      wrapAndDiffReact(<div a="1">{false}</div>, <div a="1"><img /></div>),
     ).toMatchSnapshot();
   });
 
   it('shows diffs for swapping out conditionally-rendered children', () => {
     expect(
-      wrapAndDiffReact(
-        <div a="1"><img /></div>,
-        <div a="1">{false}</div>,
-      ),
+      wrapAndDiffReact(<div a="1"><img /></div>, <div a="1">{false}</div>),
     ).toMatchSnapshot();
   });
 
@@ -282,19 +271,13 @@ describe('diffReact()', () => {
 
   it('shows diffs for adding to a list of children', () => {
     expect(
-      wrapAndDiffReact(
-        <div a="1" />,
-        <div a="1">{[<img key="1" />]}</div>,
-      ),
+      wrapAndDiffReact(<div a="1" />, <div a="1">{[<img key="1" />]}</div>),
     ).toMatchSnapshot();
   });
 
   it('shows diffs for removing from a list of children', () => {
     expect(
-      wrapAndDiffReact(
-        <div a="1">{[<img key="1" />]}</div>,
-        <div a="1" />,
-      ),
+      wrapAndDiffReact(<div a="1">{[<img key="1" />]}</div>, <div a="1" />),
     ).toMatchSnapshot();
   });
 
@@ -324,20 +307,10 @@ describe('diffReact()', () => {
     expect(
       wrapAndDiffReact(
         <div>
-          {[
-            <div key="a" />,
-            <div key="b" />,
-            <div key="c" />,
-            <div key="e" />,
-          ]}
+          {[<div key="a" />, <div key="b" />, <div key="c" />, <div key="e" />]}
         </div>,
         <div>
-          {[
-            <div key="c" />,
-            <div key="b" />,
-            <div key="d" />,
-            <div key="e" />,
-          ]}
+          {[<div key="c" />, <div key="b" />, <div key="d" />, <div key="e" />]}
         </div>,
       ),
     ).toMatchSnapshot();
@@ -354,12 +327,7 @@ describe('diffReact()', () => {
           ]}
         </div>,
         <div>
-          {[
-            <div key="a" />,
-            <div key="e" />,
-            <div key="d" />,
-            <div key="b" />,
-          ]}
+          {[<div key="a" />, <div key="e" />, <div key="d" />, <div key="b" />]}
         </div>,
       ),
     ).toMatchSnapshot();
@@ -376,12 +344,7 @@ describe('diffReact()', () => {
           ]}
         </div>,
         <div>
-          {[
-            <div key="a" />,
-            <div key="e" />,
-            <div key="d" />,
-            <div key="c" />,
-          ]}
+          {[<div key="a" />, <div key="e" />, <div key="d" />, <div key="c" />]}
         </div>,
       ),
     ).toMatchSnapshot();
@@ -724,10 +687,7 @@ describe('diffReact()', () => {
     function onClick1() {}
     function onClick2() {}
     expect(
-      wrapAndDiffReact(
-        <div onClick={onClick1} />,
-        <div onClick={onClick2} />,
-      ),
+      wrapAndDiffReact(<div onClick={onClick1} />, <div onClick={onClick2} />),
     ).toBe('(No visual differences)');
   });
 

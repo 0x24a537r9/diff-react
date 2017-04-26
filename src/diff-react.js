@@ -241,7 +241,8 @@ function virtualizeTree(
     canonicalizePropsFn(renderedElement, propsExceptChildren, canonicalizeProp),
     children &&
       flatten([children]).map(child =>
-        virtualizeTree(child, canonicalizePropsFn)),
+        virtualizeTree(child, canonicalizePropsFn),
+      ),
     renderedElement.key,
   );
 }
@@ -285,7 +286,8 @@ function canonicalizeProp(
     return SENTINEL_HANDLER;
   } else if (Array.isArray(value)) {
     return value.map((item, ii) =>
-      canonicalizeProp(renderedElement, `${prop}[${ii}]`, item));
+      canonicalizeProp(renderedElement, `${prop}[${ii}]`, item),
+    );
   } else if (value instanceof Object) {
     const canonicalizedValue = {};
     for (const key in value) {
@@ -413,7 +415,8 @@ function serializeTreeWithPatchesRecursively(
 
       const baseValue = baseProps[prop];
       const patchValue = patchProps[prop];
-      const isArrayObjectChange = baseValue &&
+      const isArrayObjectChange =
+        baseValue &&
         patchValue &&
         isObject(patchValue) &&
         (Array.isArray(baseValue) || isObject(baseValue));
@@ -568,7 +571,8 @@ function serializeTree(
       start += [
         '', // Add a newline after the tagName (with the .join('\n') below).
         ...sortedProps.map(prop =>
-          formatPropLines(prefix, indent, prop, props[prop])),
+          formatPropLines(prefix, indent, prop, props[prop]),
+        ),
         formatLines(prefix, indent, ''), // Prepare for ">".
       ].join('\n');
     }

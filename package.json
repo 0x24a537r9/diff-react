@@ -31,19 +31,24 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "eslint": "3.16.1",
-    "eslint-config-react-app": "^0.6.2",
+    "eslint-config-prettier": "^1.7.0",
+    "eslint-config-react": "^1.1.7",
     "eslint-loader": "1.6.0",
     "eslint-plugin-flowtype": "2.21.0",
-    "eslint-plugin-import": "2.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jest": "^19.0.1",
+    "eslint-plugin-prettier": "^2.0.1",
     "eslint-plugin-react": "6.4.1",
-    "extract-text-webpack-plugin": "1.0.1",
     "flow-bin": "^0.44.2",
-    "jest": "18.1.0"
+    "jest": "18.1.0",
+    "prettier": "^1.2.2"
   },
   "scripts": {
     "build": "babel src/diff-react.js --out-file dist/diff-react.js",
     "test": "jest",
-    "flow": "flow"
+    "coverage": "jest --coverage",
+    "flow": "flow",
+    "lint": "eslint src/**/*.js"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -53,7 +58,7 @@
       "<rootDir>[/\\\\](dist|docs|node_modules|scripts)[/\\\\]"
     ],
     "transform": {
-      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest"
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.js$"
@@ -69,6 +74,289 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype",
+      "import",
+      "prettier",
+      "react"
+    ],
+    "env": {
+      "es6": true,
+      "jest": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:flowtype/recommended",
+      "prettier",
+      "prettier/react",
+      "prettier/flowtype"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "impliedStrict": true,
+        "jsx": true
+      },
+      "ecmaVersion": 7,
+      "sourceType": "module"
+    },
+    "settings": {
+      "flowtype": {
+        "onlyFilesWithFlowAnnotation": true
+      }
+    },
+    "rules": {
+      "consistent-return": "error",
+      "curly": "error",
+      "default-case": "error",
+      "eqeqeq": [
+        "error",
+        "smart"
+      ],
+      "no-alert": "error",
+      "no-eq-null": "error",
+      "no-eval": "error",
+      "no-extra-bind": "error",
+      "no-implied-eval": "error",
+      "no-floating-decimal": "error",
+      "no-labels": "error",
+      "no-lone-blocks": "error",
+      "no-multi-str": "error",
+      "no-native-reassign": [
+        "error",
+        {
+          "exceptions": [
+            "Map",
+            "Set"
+          ]
+        }
+      ],
+      "no-new": "error",
+      "no-new-func": "error",
+      "no-new-wrappers": "error",
+      "no-octal": "error",
+      "no-param-reassign": "error",
+      "no-script-url": "error",
+      "no-self-compare": "error",
+      "no-sequences": "error",
+      "no-throw-literal": "error",
+      "no-unmodified-loop-condition": "error",
+      "no-unused-labels": "error",
+      "no-useless-call": "error",
+      "no-useless-concat": "error",
+      "no-useless-escape": "error",
+      "no-void": "error",
+      "no-warning-comments": "off",
+      "radix": "error",
+      "yoda": "error",
+      "strict": [
+        "error",
+        "never"
+      ],
+      "no-catch-shadow": "error",
+      "no-delete-var": "error",
+      "no-label-var": "error",
+      "no-shadow": "error",
+      "no-shadow-restricted-names": "error",
+      "no-undef": "error",
+      "no-unused-vars": [
+        "error",
+        {
+          "args": "none",
+          "varsIgnorePattern": "^_"
+        }
+      ],
+      "camelcase": [
+        "error",
+        {
+          "properties": "never"
+        }
+      ],
+      "max-statements-per-line": [
+        "error",
+        {
+          "max": 1
+        }
+      ],
+      "no-array-constructor": "error",
+      "no-bitwise": "error",
+      "no-new-object": "error",
+      "no-unneeded-ternary": "error",
+      "no-useless-return": "error",
+      "one-var": [
+        "error",
+        "never"
+      ],
+      "operator-assignment": [
+        "error",
+        "always"
+      ],
+      "quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "sort-imports": "off",
+      "spaced-comment": [
+        "error",
+        "always",
+        {
+          "line": {
+            "exceptions": [
+              "eslint"
+            ]
+          },
+          "block": {
+            "exceptions": [
+              "*",
+              "eslint"
+            ],
+            "balanced": true
+          }
+        }
+      ],
+      "arrow-body-style": [
+        "off",
+        "as-needed",
+        {
+          "requireReturnForObjectLiteral": false
+        }
+      ],
+      "constructor-super": "error",
+      "no-class-assign": "error",
+      "no-const-assign": "error",
+      "no-dupe-class-members": "error",
+      "no-duplicate-imports": "off",
+      "no-new-symbol": "error",
+      "no-this-before-super": "error",
+      "no-useless-computed-key": "error",
+      "no-useless-constructor": "error",
+      "no-useless-rename": "error",
+      "no-var": "error",
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "any",
+          "ignoreReadBeforeAssign": true
+        }
+      ],
+      "prefer-arrow-callback": "error",
+      "prefer-numeric-literals": "error",
+      "prefer-promise-reject-errors": "error",
+      "prefer-rest-params": "error",
+      "prefer-spread": "error",
+      "prefer-template": "error",
+      "symbol-description": "error",
+      "flowtype/boolean-style": [
+        "error",
+        "boolean"
+      ],
+      "flowtype/define-flow-type": "error",
+      "flowtype/no-dupe-keys": "error",
+      "flowtype/no-weak-types": [
+        "error",
+        {
+          "any": false,
+          "Object": false,
+          "Function": true
+        }
+      ],
+      "flowtype/require-parameter-type": [
+        "error",
+        {
+          "excludeArrowFunctions": true
+        }
+      ],
+      "flowtype/require-return-type": "off",
+      "flowtype/require-valid-file-annotation": "off",
+      "flowtype/sort-keys": [
+        "error",
+        "asc",
+        {
+          "natural": true
+        }
+      ],
+      "flowtype/type-id-match": "off",
+      "flowtype/use-flow-type": "error",
+      "flowtype/valid-syntax": "error",
+      "react/display-name": "off",
+      "react/jsx-boolean-value": [
+        "error",
+        "always"
+      ],
+      "react/jsx-handler-names": "off",
+      "react/jsx-key": "error",
+      "react/jsx-no-bind": [
+        "error",
+        {
+          "ignoreRefs": false,
+          "allowArrowFunctions": false,
+          "allowBind": false
+        }
+      ],
+      "react/jsx-no-duplicate-props": "error",
+      "react/jsx-no-literals": "error",
+      "react/jsx-no-undef": "error",
+      "react/jsx-pascal-case": "error",
+      "react/jsx-sort-props": "error",
+      "react/jsx-uses-react": "off",
+      "react/jsx-uses-vars": "error",
+      "react/no-danger": "error",
+      "react/no-deprecated": "error",
+      "react/no-did-mount-set-state": "error",
+      "react/no-did-update-set-state": "error",
+      "react/no-direct-mutation-state": "error",
+      "react/no-find-dom-node": "off",
+      "react/no-is-mounted": "error",
+      "react/no-multi-comp": "off",
+      "react/no-set-state": "off",
+      "react/no-unknown-property": "error",
+      "react/no-unused-prop-types": "off",
+      "react/prefer-es6-class": "error",
+      "react/prefer-stateless-function": "error",
+      "react/prop-types": "error",
+      "react/react-in-jsx-scope": "error",
+      "react/require-render-return": "error",
+      "react/self-closing-comp": "error",
+      "react/sort-comp": "off",
+      "react/sort-prop-types": "error",
+      "import/named": "error",
+      "import/default": "error",
+      "import/namespace": "error",
+      "import/no-absolute-path": "error",
+      "import/no-webpack-loader-syntax": "off",
+      "import/export": "error",
+      "import/no-named-as-default": "error",
+      "import/no-named-as-default-member": "error",
+      "import/no-deprecated": "error",
+      "import/no-mutable-exports": "error",
+      "import/no-commonjs": "error",
+      "import/first": "error",
+      "import/no-duplicates": "error",
+      "import/order": [
+        "error",
+        {
+          "newlines-between": "ignore"
+        }
+      ],
+      "import/newline-after-import": "error",
+      "import/prefer-default-export": "off",
+      "import/no-unassigned-import": "error",
+      "prettier/prettier": [
+        "error",
+        {
+          "bracketSpacing": false,
+          "jsxBracketSameLine": true,
+          "singleQuote": true,
+          "trailingComma": "all",
+          "parser": "babylon"
+        }
+      ]
+    }
   }
 }
