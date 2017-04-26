@@ -1,0 +1,675 @@
+exports[`diffReact() collapses deeply-equal complex sibling trees 1`] = `
+"  <div …=…>
+    <div …=…>…</div>
+-   <div a=\"1\" b=\"2\"/>
++   <img c=\"3\" d=\"4\"/>
+    <div …=…>…</div>
+  </div>"
+`;
+
+exports[`diffReact() collapses equal props and keys with differing children 1`] = `
+"  <div key=\"abc\" …=…>
+-   <div name=\"bcd\"/>
++   <img/>
+  </div>"
+`;
+
+exports[`diffReact() correctly handles props changes when there are changes earlier in the tree 1`] = `
+"  <div>
+    <div key=\"1\"/>
+    <div key=\"2\"/>
++   <div key=\"3\">
++     <div/>
++   </div>
++   <div name=\"newElement\"/>
+m   <div key=\"tested\"
++     newProp=\"new\"
+m   />
+  </div>"
+`;
+
+exports[`diffReact() degenerates as expected when a child is added from the middle without a key or placeholder 1`] = `
+"  <div>
+    <img …=…/>
+-   <img c=\"3\"/>
++   <div b=\"2\"/>
++   <img c=\"3\"/>
+  </div>"
+`;
+
+exports[`diffReact() degenerates as expected when a child is removed from the middle without a key or placeholder 1`] = `
+"  <div>
+    <img …=…/>
+-   <div b=\"2\"/>
++   <img c=\"3\"/>
+-   <img c=\"3\"/>
+  </div>"
+`;
+
+exports[`diffReact() formats multiline strings diffs correctly 1`] = `
+"  <span>
+-   Line1
+-   Line2
++   Line3
++   Line4
+  </span>"
+`;
+
+exports[`diffReact() implements custom canonicalizers correctly 1`] = `
+"  <div
+-   function={[Function foo]}
++   function={[Function bar]}
+-   mutable={0}
++   mutable={1}
+    objectWithFunction={
+      Object {
+-       \"fn\": [Function foo],
++       \"fn\": [Function bar],
+      }
+    }
+  />"
+`;
+
+exports[`diffReact() keeps track of patch indices correctly when removing an item deep in a tree 1`] = `
+"  <div>
+    <div key=\"a\">…</div>
+    <div key=\"d\">
+      <div key=\"e\"/>
+-     <div key=\"f\"/>
+    </div>
+  </div>"
+`;
+
+exports[`diffReact() recognizes a child being added to the middle of a list 1`] = `
+"  <div>
+    <div key=\"1\"/>
++   <div key=\"2\"/>
+    <div key=\"3\"/>
+  </div>"
+`;
+
+exports[`diffReact() recognizes a child being added to the middle of a list in a reordered parent 1`] = `
+"  <div>
+m   <div key=\"2\">
++     <div/>
+m   </div>
+    <div key=\"1\"/>
+  </div>"
+`;
+
+exports[`diffReact() recognizes a child being removed from the middle of a list 1`] = `
+"  <div>
+    <div key=\"1\"/>
+-   <div key=\"2\"/>
+    <div key=\"3\"/>
+  </div>"
+`;
+
+exports[`diffReact() recognizes a child being removed from the middle of a list in a reordered parent 1`] = `
+"  <div>
+m   <div key=\"2\">
+-     <div/>
+m   </div>
+    <div key=\"1\"/>
+  </div>"
+`;
+
+exports[`diffReact() recognizes a conditionally-rendered child being swapped into the middle of a list 1`] = `
+"  <div>
+    <div/>
++   <div/>
+    <div/>
+  </div>"
+`;
+
+exports[`diffReact() recognizes a conditionally-rendered child being swapped out of the middle of a list 1`] = `
+"  <div>
+    <div/>
+-   <div/>
+    <div/>
+  </div>"
+`;
+
+exports[`diffReact() recognizes and collapses equal props on reordered elements 1`] = `
+"  <div …=…>
++   <div b=\"2\"/>
+m   <img key=\"image\">…</img>
+  </div>"
+`;
+
+exports[`diffReact() recognizes diffs in strings 1`] = `
+"  <span>
+-   Equal
++   Diff
+  </span>"
+`;
+
+exports[`diffReact() recognizes mixed-keyed children being reordered 1`] = `
+"  <div>
+m   <div key=\"b\"/>
+    <div …=…/>
+m   <div key=\"c\"/>
+    <div key=\"a\"/>
+  </div>"
+`;
+
+exports[`diffReact() recognizes nested reorderings 1`] = `
+"  <div>
+m   <div key=\"b\">
+m     <div key=\"e\"/>
+      <div key=\"d\"/>
+m   </div>
+    <div key=\"a\"/>
+    <div key=\"c\"/>
+  </div>"
+`;
+
+exports[`diffReact() recognizes single otherwise identical components as different if they have different keys 1`] = `
+"- <div key=\"a\"/>
++ <div key=\"b\"/>"
+`;
+
+exports[`diffReact() recognizes strings being added 1`] = `
+"  <span>
++   Added
+  </span>"
+`;
+
+exports[`diffReact() recognizes strings being removed 1`] = `
+"  <span>
+-   Removed
+  </span>"
+`;
+
+exports[`diffReact() recognizes strings being swapped in for a falsey value 1`] = `
+"  <span>
++   Added
+  </span>"
+`;
+
+exports[`diffReact() recognizes strings being swapped in for another component 1`] = `
+"  <span>
+-   <span>
+-     Removed
+-   </span>
++   Added
+  </span>"
+`;
+
+exports[`diffReact() recognizes strings being swapped out for a falsey value 1`] = `
+"  <span>
+-   Removed
+  </span>"
+`;
+
+exports[`diffReact() recognizes strings being swapped out for another component 1`] = `
+"  <span>
+-   Removed
++   <span>
++     Added
++   </span>
+  </span>"
+`;
+
+exports[`diffReact() renders exactly one level deep 1`] = `
+"+ <div>
++   <Foo render={true}>
++     <div key=\"child\"/>
++   </Foo>
++   <div key=\"child\"/>
++ </div>"
+`;
+
+exports[`diffReact() shows (albeit mysterious) diffs for falsey children being reordered 1`] = `
+"  <div>
+    <div key=\"a\"/>
+m   <div key=\"b\"/>
+    <div key=\"c\"/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs between non-handler function props 1`] = `"(No visual differences)"`;
+
+exports[`diffReact() shows diffs for adding to a list of children 1`] = `
+"  <div …=…>
++   <img key=\"1\"/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for children being reordered 1`] = `
+"  <div>
+m   <div key=\"c\"/>
+    <div key=\"b\"/>
+m   <div key=\"a\"/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for children being reordered with additions and removals 1`] = `
+"  <div>
+-   <div key=\"a\"/>
+m   <div key=\"c\"/>
+    <div key=\"b\"/>
++   <div key=\"d\"/>
+    <div key=\"e\"/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for children being reordered with additions and removals 2`] = `
+"  <div>
+    <div key=\"a\"/>
+-   <div key=\"c\"/>
+m   <div key=\"e\"/>
+    <div key=\"d\"/>
+m   <div key=\"b\"/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for children being reordered with additions and removals 3`] = `
+"  <div>
+    <div key=\"a\"/>
+-   <div key=\"b\"/>
+m   <div key=\"e\"/>
+    <div key=\"d\"/>
+m   <div key=\"c\"/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for complex props changes 1`] = `
+"  <div …=…
+    diffArray={
+      Array [
+-       0,
+-       1,
+-       2,
++       3,
++       4,
+      ]
+    }
+-   diffBoolean={false}
++   diffBoolean={true}
+-   diffFalsey={false}
++   diffFalsey={null}
+-   diffMultilineString=\"a\\nb\\nc\"
++   diffMultilineString=\"d\\ne\\nf\"
+-   diffNumber={0}
++   diffNumber={1}
+    diffObject={
+      Object {
+-       \"diffArray\": Array [
+-         0,
+-         1,
+-         2,
+-       ],
+-       \"diffBoolean\": false,
+-       \"diffFalsey\": false,
+-       \"diffMultilineString\": \"a
+-     b
+-     c\",
+-       \"diffNumber\": 0,
++       \"diffArray\": Object {
++         \"0\": 3,
++         \"1\": 4,
++         \"2\": undefined,
++       },
++       \"diffBoolean\": true,
++       \"diffFalsey\": null,
++       \"diffMultilineString\": \"d
++     e
++     f\",
++       \"diffNumber\": 1,
+        \"diffObject\": Object {
+-         \"diffBoolean\": false,
+-         \"diffMultilineString\": \"a
+-     b
+-     c\",
+-         \"diffNumber\": 0,
+-         \"diffString\": \"a\",
++         \"diffBoolean\": true,
++         \"diffMultilineString\": \"d
++     e
++     f\",
++         \"diffNumber\": 1,
++         \"diffString\": \"b\",
+        },
+        \"diffRegex\": Object {},
+-       \"diffString\": \"a\",
++       \"diffString\": \"b\",
+      }
+    }
+-   diffString=\"a\"
++   diffString=\"b\"
+  />"
+`;
+
+exports[`diffReact() shows diffs for nested, completely different components 1`] = `
+"  <div>
+-   <div a=\"1\" b=\"2\"/>
++   <img c=\"3\" d=\"4\"/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for removing children from nested lists 1`] = `
+"  <div …=…>
+-   <div key=\"1\"/>
+    <div key=\"2\">
+-     <div key=\"3\"/>
+    </div>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for removing from a list of children 1`] = `
+"  <div …=…>
+-   <img key=\"1\"/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for reordering and type tagName changes simultaneously 1`] = `
+"  <div>
+    <div key=\"a\" …=…/>
+-   <div key=\"c\" x=\"3\"/>
++   <img key=\"c\" x=\"3\"/>
+    <div key=\"b\"
+-     x=\"2\"
++     x=\"9\"
+    />
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for replacing a falsey value with an element 1`] = `"+ <div/>"`;
+
+exports[`diffReact() shows diffs for replacing an element with falsey value 1`] = `"- <div/>"`;
+
+exports[`diffReact() shows diffs for single components with a removed prop 1`] = `
+"  <div
+-   a=\"1\"
+  />"
+`;
+
+exports[`diffReact() shows diffs for single components with an added prop 1`] = `
+"  <div
++   a=\"1\"
+  />"
+`;
+
+exports[`diffReact() shows diffs for single components with different nested types 1`] = `
+"  <div>
+-   <div/>
++   <img/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for single components with different nested types but equal props 1`] = `
+"  <div>
+-   <div a=\"1\"/>
++   <img a=\"1\"/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for single components with different types 1`] = `
+"- <div/>
++ <img/>"
+`;
+
+exports[`diffReact() shows diffs for single components with different types with equal props/children 1`] = `
+"- <div a=\"1\">
+-   <div b=\"2\"/>
+- </div>
++ <img a=\"1\">
++   <div b=\"2\"/>
++ </img>"
+`;
+
+exports[`diffReact() shows diffs for single components with equal and different props 1`] = `
+"  <div …=…
+-   diff1=\"a\"
++   diff1=\"c\"
+  />"
+`;
+
+exports[`diffReact() shows diffs for single components with only different props 1`] = `
+"  <div
+-   diff1=\"a\"
++   diff1=\"c\"
+-   diff2=\"b\"
++   diff2=\"d\"
+  />"
+`;
+
+exports[`diffReact() shows diffs for swapping in conditionally-rendered children 1`] = `
+"  <div …=…>
++   <img/>
+  </div>"
+`;
+
+exports[`diffReact() shows diffs for swapping out conditionally-rendered children 1`] = `
+"  <div …=…>
+-   <img/>
+  </div>"
+`;
+
+exports[`diffReact() shows text diffs for React props that are different 1`] = `
+"  <div
+    react={
+      <span>
+-       Before
++       After
+      </span>
+    }
+  />"
+`;
+
+exports[`diffReact() shows text diffs for array props that are different 1`] = `
+"  <div
+    array={
+      Array [
+        1,
+-       2,
+-       3,
++       6,
++       7,
+        4,
+-       5,
+      ]
+    }
+  />"
+`;
+
+exports[`diffReact() shows text diffs for object props that are different 1`] = `
+"  <div
+    object={
+      Object {
+        \"a\": 1,
+-       \"b\": 2,
+-       \"c\": 3,
++       \"b\": 5,
++       \"d\": 3,
+      }
+    }
+  />"
+`;
+
+exports[`diffReact() wraps props of a newly-added tree to new lines if they would make the start tag line >100 chars 1`] = `
+"  <div>
++   <div aReallyLongProp1=\"aaaaaaaaa\" aReallyLongProp2=\"bbbbbbbbb\" notLongEnoughToWrap=\"ccccccccc\"/>
+  </div>"
+`;
+
+exports[`diffReact() wraps props of a newly-added tree to new lines if they would make the start tag line >100 chars 2`] = `
+"  <div>
++   <div
++     aReallyLongProp1=\"aaaaaaaaa\"
++     aReallyLongProp2=\"bbbbbbbbb\"
++     justLongEnoughToWrap=\"ccccccccc\"
++   />
+  </div>"
+`;
+
+exports[`formatArrayOrObjectPropDiff does collapse consecutive unchanged lines when > 2 1`] = `
+"    prop={
+      Object {
+        …
+        \"b\": \"2\",
+-       \"c\": \"3\",
++       \"c\": \"-3\",
+        \"d\": \"4\",
+        …
+      }
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff does not collapse consecutive unchanged lines when <= 2 1`] = `
+"    prop={
+      Object {
+        \"a\": \"1\",
+-       \"b\": \"2\",
++       \"b\": \"-2\",
+        \"c\": \"3\",
+      }
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff indents as specified 1`] = `
+"      prop={
+-       Object {}
++       Object {
++         \"a\": \"1\",
++       }
+      }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes changes to complex flat objects correctly 1`] = `
+"    prop={
+      Object {
+-       \"a\": \"1\",
+-       \"b\": 2,
+-       \"c\": null,
+-       \"d\": /foo/,
++       \"a\": \"2\",
++       \"b\": 3,
++       \"c\": false,
++       \"d\": /bar/,
+        \"e\": [Function e],
+      }
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes changes to nested objects correctly 1`] = `
+"    prop={
+      Object {
+        …
+            \"c\": Object {
+-             \"d\": 4,
++             \"d\": 5,
+            },
+        …
+          \"f\": Object {
+-           \"g\": 7,
++           \"g\": 8,
+          },
+        …
+      }
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes mixed changes to simple objects correctly 1`] = `
+"    prop={
+      Object {
+        \"a\": \"1\",
+-       \"b\": \"2\",
++       \"b\": \"5\",
+        \"c\": \"3\",
+-       \"d\": \"4\",
++       \"e\": \"5\",
+      }
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple additions on empty arrays correctly 1`] = `
+"    prop={
+-     Array []
++     Array [
++       \"1\",
++     ]
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple additions on empty objects correctly 1`] = `
+"    prop={
+-     Object {}
++     Object {
++       \"a\": \"1\",
++     }
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple additions on non-empty arrays correctly 1`] = `
+"    prop={
+      Array [
+        \"1\",
++       \"2\",
+      ]
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple additions on non-empty objects correctly 1`] = `
+"    prop={
+      Object {
+        \"a\": \"1\",
++       \"b\": \"2\",
+      }
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple mutations on arrays correctly 1`] = `
+"    prop={
+      Array [
+-       \"1\",
++       \"2\",
+      ]
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple mutations on objects correctly 1`] = `
+"    prop={
+      Object {
+-       \"a\": \"1\",
++       \"a\": \"2\",
+      }
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple removals to empty arrays correctly 1`] = `
+"    prop={
+-     Array [
+-       \"1\",
+-     ]
++     Array []
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple removals to empty objects correctly 1`] = `
+"    prop={
+-     Object {
+-       \"a\": \"1\",
+-     }
++     Object {}
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple removals to non-empty arrays correctly 1`] = `
+"    prop={
+      Array [
+        \"1\",
+-       \"2\",
+      ]
+    }"
+`;
+
+exports[`formatArrayOrObjectPropDiff serializes simple removals to non-empty objects correctly 1`] = `
+"    prop={
+      Object {
+        \"a\": \"1\",
+-       \"b\": \"2\",
+      }
+    }"
+`;
