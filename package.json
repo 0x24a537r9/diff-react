@@ -1,8 +1,10 @@
 {
   "name": "diff-react",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Smart React tree differ",
   "main": "lib/diff-react.js",
+  "homepage": "https://github.com/0x24a537r9/diff-react",
+  "bugs": "https://github.com/0x24a537r9/diff-react/issues",
   "keywords": [
     "react",
     "diff",
